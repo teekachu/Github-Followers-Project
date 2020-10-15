@@ -90,10 +90,53 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F43C910125390C1200D5A953 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				F43C90FC2538E8D200D5A953 /* ext+UIViewController.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		F43C910225390CA500D5A953 /* Button */ = {
+			isa = PBXGroup;
+			children = (
+				F4D46E182537EABF00FBB3DD /* GFButton.swift */,
+			);
+			path = Button;
+			sourceTree = "<group>";
+		};
+		F43C910325390CAF00D5A953 /* Alert */ = {
+			isa = PBXGroup;
+			children = (
+				F43C90F42538C02A00D5A953 /* GFAlertVC.swift */,
+			);
+			path = Alert;
+			sourceTree = "<group>";
+		};
+		F43C910425390CBD00D5A953 /* Label */ = {
+			isa = PBXGroup;
+			children = (
+				F43C90E92538BAAE00D5A953 /* GFTitleLabel.swift */,
+				F43C90EE2538BDEF00D5A953 /* GFBodyLabel.swift */,
+			);
+			path = Label;
+			sourceTree = "<group>";
+		};
+		F43C910525390CCD00D5A953 /* Textfield */ = {
+			isa = PBXGroup;
+			children = (
+				F4D46E262537EFBE00FBB3DD /* GFTextfield.swift */,
+			);
+			path = Textfield;
+			sourceTree = "<group>";
+		};
 		F4D46DBA25374C1E00FBB3DD = {
 			isa = PBXGroup;
 			children = (
 				F4D46E172537EA9600FBB3DD /* Helper */,
+				F43C910125390C1200D5A953 /* Extensions */,
+				F4D46E0F25376B1500FBB3DD /* View Controllers */,
 				F4D46DC525374C1E00FBB3DD /* GitHubProject */,
 				F4D46DDC25374C2200FBB3DD /* GitHubProjectTests */,
 				F4D46DE725374C2200FBB3DD /* GitHubProjectUITests */,
@@ -116,7 +159,6 @@
 			children = (
 				F4D46DC625374C1E00FBB3DD /* AppDelegate.swift */,
 				F4D46DC825374C1E00FBB3DD /* SceneDelegate.swift */,
-				F4D46E0F25376B1500FBB3DD /* ViewControllers */,
 				F4D46DCF25374C2200FBB3DD /* Assets.xcassets */,
 				F4D46DD125374C2200FBB3DD /* LaunchScreen.storyboard */,
 				F4D46DD425374C2200FBB3DD /* Info.plist */,
@@ -142,25 +184,23 @@
 			path = GitHubProjectUITests;
 			sourceTree = "<group>";
 		};
-		F4D46E0F25376B1500FBB3DD /* ViewControllers */ = {
+		F4D46E0F25376B1500FBB3DD /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				F4D46E0525376AD500FBB3DD /* searchVC.swift */,
 				F43C90DC25389D3A00D5A953 /* followerListVC.swift */,
 				F4D46E0A25376AF900FBB3DD /* favoriteListVC.swift */,
 			);
-			path = ViewControllers;
+			path = "View Controllers";
 			sourceTree = "<group>";
 		};
 		F4D46E172537EA9600FBB3DD /* Helper */ = {
 			isa = PBXGroup;
 			children = (
-				F4D46E262537EFBE00FBB3DD /* GFTextfield.swift */,
-				F4D46E182537EABF00FBB3DD /* GFButton.swift */,
-				F43C90F42538C02A00D5A953 /* GFAlertVC.swift */,
-				F43C90FC2538E8D200D5A953 /* ext+UIViewController.swift */,
-				F43C90E92538BAAE00D5A953 /* GFTitleLabel.swift */,
-				F43C90EE2538BDEF00D5A953 /* GFBodyLabel.swift */,
+				F43C910525390CCD00D5A953 /* Textfield */,
+				F43C910425390CBD00D5A953 /* Label */,
+				F43C910325390CAF00D5A953 /* Alert */,
+				F43C910225390CA500D5A953 /* Button */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
