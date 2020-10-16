@@ -37,4 +37,5 @@ class GFBodyLabel: UILabel {
         lineBreakMode = .byWordWrapping  //(... for the hidden words)
     }
     
+    
 }
