@@ -12,6 +12,8 @@
 		F43C90EF2538BDEF00D5A953 /* GFBodyLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43C90EE2538BDEF00D5A953 /* GFBodyLabel.swift */; };
 		F43C90F52538C02A00D5A953 /* GFAlertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43C90F42538C02A00D5A953 /* GFAlertVC.swift */; };
 		F43C90FD2538E8D200D5A953 /* ext+UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43C90FC2538E8D200D5A953 /* ext+UIViewController.swift */; };
+		F43C911725391B5400D5A953 /* Follower.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43C911625391B5400D5A953 /* Follower.swift */; };
+		F43C912225391CBE00D5A953 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43C912125391CBE00D5A953 /* User.swift */; };
 		F4D46DC725374C1E00FBB3DD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D46DC625374C1E00FBB3DD /* AppDelegate.swift */; };
 		F4D46DC925374C1E00FBB3DD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D46DC825374C1E00FBB3DD /* SceneDelegate.swift */; };
 		F4D46DD025374C2200FBB3DD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F4D46DCF25374C2200FBB3DD /* Assets.xcassets */; };
@@ -47,6 +49,8 @@
 		F43C90EE2538BDEF00D5A953 /* GFBodyLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFBodyLabel.swift; sourceTree = "<group>"; };
 		F43C90F42538C02A00D5A953 /* GFAlertVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFAlertVC.swift; sourceTree = "<group>"; };
 		F43C90FC2538E8D200D5A953 /* ext+UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ext+UIViewController.swift"; sourceTree = "<group>"; };
+		F43C911625391B5400D5A953 /* Follower.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Follower.swift; sourceTree = "<group>"; };
+		F43C912125391CBE00D5A953 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		F4D46DC325374C1E00FBB3DD /* GitHubProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitHubProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4D46DC625374C1E00FBB3DD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F4D46DC825374C1E00FBB3DD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -131,9 +135,19 @@
 			path = Textfield;
 			sourceTree = "<group>";
 		};
+		F43C911525391B2200D5A953 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F43C911625391B5400D5A953 /* Follower.swift */,
+				F43C912125391CBE00D5A953 /* User.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		F4D46DBA25374C1E00FBB3DD = {
 			isa = PBXGroup;
 			children = (
+				F43C911525391B2200D5A953 /* Model */,
 				F4D46E172537EA9600FBB3DD /* Helper */,
 				F43C910125390C1200D5A953 /* Extensions */,
 				F4D46E0F25376B1500FBB3DD /* View Controllers */,
@@ -334,6 +348,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F43C912225391CBE00D5A953 /* User.swift in Sources */,
 				F43C90DD25389D3A00D5A953 /* followerListVC.swift in Sources */,
 				F4D46E272537EFBE00FBB3DD /* GFTextfield.swift in Sources */,
 				F4D46E0B25376AF900FBB3DD /* favoriteListVC.swift in Sources */,
@@ -341,6 +356,7 @@
 				F43C90F52538C02A00D5A953 /* GFAlertVC.swift in Sources */,
 				F43C90EF2538BDEF00D5A953 /* GFBodyLabel.swift in Sources */,
 				F43C90EA2538BAAE00D5A953 /* GFTitleLabel.swift in Sources */,
+				F43C911725391B5400D5A953 /* Follower.swift in Sources */,
 				F43C90FD2538E8D200D5A953 /* ext+UIViewController.swift in Sources */,
 				F4D46DC725374C1E00FBB3DD /* AppDelegate.swift in Sources */,
 				F4D46DC925374C1E00FBB3DD /* SceneDelegate.swift in Sources */,
