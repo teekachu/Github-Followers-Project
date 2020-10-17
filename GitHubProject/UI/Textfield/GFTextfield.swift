@@ -40,6 +40,8 @@ class GFTextfield: UITextField {
         
         // customize keyboard type ( only for the return key)
         returnKeyType = .go
+        autocorrectionType = .no
+        autocapitalizationType = .none
     }
     
     
