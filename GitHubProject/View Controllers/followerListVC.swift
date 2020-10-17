@@ -19,16 +19,34 @@ class followerListVC: UIViewController {
         navigationController?.setNavigationBarHidden(false, animated: true)
         navigationController?.navigationBar.prefersLargeTitles = true
         
+        //new way using Results<>
         
-        NetworkManager.shared.getFollowers(for: username, page: 1) { (followersSuccessful, errorMSG) in  //param can be whatever we want
-            guard let followers = followersSuccessful else{
-                self.presentGFalertOnMainThread(title: "Bad stuff Happend", message: errorMSG!.rawValue, buttonTitle: "Shitt!!")
-                return
-            }
+        NetworkManager.shared.getFollowers(for: username, page: 1) { result in
+            switch result{
             
-            print("Followers.count: \(followers.count)")
-            print(followers)
+            case.failure(let error):
+                self.presentGFalertOnMainThread(title: "Bad stuff Happend", message: error.rawValue, buttonTitle: "Shitt!!")
+                
+            case .success(let followers):
+                print("Followers.count: \(followers.count)")
+                print(followers)
+                
+                
+                
+            }
         }
+        
+        
+        
+        //        NetworkManager.shared.getFollowers(for: username, page: 1) { (followersSuccessful, errorMSG) in  //param can be whatever we want
+        //            guard let followers = followersSuccessful else{
+        //                self.presentGFalertOnMainThread(title: "Bad stuff Happend", message: errorMSG!.rawValue, buttonTitle: "Shitt!!")
+        //                return
+        //            }
+        //
+        //            print("Followers.count: \(followers.count)")
+        //            print(followers)
+        //        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
