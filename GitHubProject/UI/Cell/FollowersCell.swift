@@ -38,7 +38,7 @@ class FollowersCell: UICollectionViewCell {
             avatarImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
             avatarImageView.heightAnchor.constraint(equalTo: avatarImageView.widthAnchor, constant: 0),
             
-            usernameLabel.topAnchor.constraint(equalToSystemSpacingBelow: avatarImageView.bottomAnchor, multiplier: 12),
+            usernameLabel.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: 12),
             usernameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
             usernameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
             usernameLabel.heightAnchor.constraint(equalToConstant: 20)
@@ -51,4 +51,5 @@ class FollowersCell: UICollectionViewCell {
         usernameLabel.text = follower.login
     }
     
+
 }
