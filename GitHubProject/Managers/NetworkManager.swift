@@ -5,14 +5,15 @@
 //  Created by Tee Becker on 10/16/20.
 //
 
-import Foundation
+import UIKit
 
 // singleton
 class NetworkManager{
     
     // static means shared with other instances/values/ ie. every other network manager
     static let shared = NetworkManager()
-    let baseURL = "https://api.github.com"
+    private let baseURL = "https://api.github.com"
+    let cache = NSCache<NSString, UIImage>() // put it here because since NM is a singleton, there will only be one cache.
     
     private init(){
         
