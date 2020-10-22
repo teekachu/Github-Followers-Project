@@ -8,10 +8,12 @@
 import UIKit
 
 class GFFollowerItemVC: GFItemInfoVC{
+    weak var delegate: GithubFollowersTappable?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureItems()
+        configureButtonAction()
     }
     
     
@@ -20,4 +22,17 @@ class GFFollowerItemVC: GFItemInfoVC{
         itemInfoViewTwo.set(ItemInfoType: .following, with: user.following)
         actionButton.set(backgroundColor: .systemGreen, title: "Get Followers")
     }
+    
+    
+    private func configureButtonAction(){
+        actionButton.addTarget(self, action: #selector(didTapGetFollowers), for: .touchUpInside)
+    }
+    
+    
+    @objc func didTapGetFollowers(){
+        if let delegate = delegate{
+            delegate.didTapGetFollowers(for: user)
+        }
+    }
+    
 }

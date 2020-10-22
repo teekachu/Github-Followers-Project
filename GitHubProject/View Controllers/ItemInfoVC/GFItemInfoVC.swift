@@ -3,7 +3,6 @@
 //  GitHubProject
 //
 //  Created by Tee Becker on 10/20/20.
-//
 
 import UIKit
 
@@ -21,6 +20,7 @@ class GFItemInfoVC: UIViewController {
         self.user = user
     }
     
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -29,21 +29,16 @@ class GFItemInfoVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureBackgroundView()
-        addSubview()
         configureStackview()
         layoutUI()
     }
     
 
     private func configureBackgroundView(){
-        view.layer.cornerRadius = 18
-        view.backgroundColor = .secondarySystemBackground // gray ish
-    }
-    
-    
-    private func addSubview(){
         view.addSubview(stackview)
         view.addSubview(actionButton)
+        view.layer.cornerRadius = 18
+        view.backgroundColor = .secondarySystemBackground // gray ish
     }
     
     

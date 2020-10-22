@@ -9,10 +9,12 @@ import UIKit
 
 // inheritence from super class.
 class GFRepoItemVC: GFItemInfoVC{
+    weak var delegate: GithubProfileTappable?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureItems()
+        configureButtonAction()
     }
     
     
@@ -21,4 +23,16 @@ class GFRepoItemVC: GFItemInfoVC{
         itemInfoViewTwo.set(ItemInfoType: .gists, with: user.public_gists)
         actionButton.set(backgroundColor: .systemPurple, title: "Github Profile")
     }
+    
+    
+    private func configureButtonAction(){
+        actionButton.addTarget(self, action: #selector(didTapGithubProfile), for: .touchUpInside)
+    }
+    
+    @objc func didTapGithubProfile(){
+        if let delegate = delegate{
+            delegate.didTapGithubProfile(for: user)
+        }
+    }
+    
 }

@@ -7,8 +7,11 @@
 
 import UIKit
 
+protocol followerListVCDeligate: class{
+    func didRequestFollowers(for username: String)
+}
+
 class followerListVC: UIViewController {
-    
     var username: String!
     var collectionView : UICollectionView!
     var followers: [Follower] = []
@@ -27,7 +30,6 @@ class followerListVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         configureCollectionView()
         configureViewController()
         configureSearchController()
@@ -37,7 +39,6 @@ class followerListVC: UIViewController {
     
     
     override func viewWillAppear(_ animated: Bool) {
-        
         super.viewWillAppear(true) // always call super when you are overriding
         //        navigationController?.isNavigationBarHidden = false
         navigationController?.setNavigationBarHidden(false, animated: true)
@@ -45,7 +46,6 @@ class followerListVC: UIViewController {
     
     
     func configureViewController(){
-        
         view.backgroundColor = .systemBackground
         //        navigationController?.isNavigationBarHidden = false
         navigationController?.setNavigationBarHidden(false, animated: true)
@@ -54,12 +54,10 @@ class followerListVC: UIViewController {
     
     
     func configureCollectionView(){
-        
         // initialize
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: UIHelper.createThreeColumnFlowLayout(in: view))
         view.addSubview(collectionView)
         collectionView.delegate = self  // set the deligate
-        
         collectionView.backgroundColor = .systemBackground
         // reguster the collectionview for use , use same reuseID from followersCell(static)
         collectionView.register(FollowersCell.self, forCellWithReuseIdentifier: FollowersCell.reuseID)
@@ -77,14 +75,10 @@ class followerListVC: UIViewController {
     
     
     func getFollowers(username: String, page: Int){
-        
-        // loading screen
-        showLoadingView()
-        
+        showLoadingView()   // loading screen
         //new way using Results<>
         NetworkManager.shared.getFollowers(for: username, page: pageCounter) {[weak self] result in
             //            #warning("call dismiss loading view")
-            
             guard let self = self else{return} // new hack to get rid of the ? below
             self.dismissLoadingVIew()
             
@@ -182,11 +176,11 @@ extension followerListVC: UICollectionViewDelegate{ // conform to delegate
         
         let activeArray = isSearching ? filteredFollowers : followers
         let eachFollower = activeArray[indexPath.item]
-        
         let destVC = UserInfoVC()
         destVC.username = eachFollower.login
-        let navController = UINavigationController(rootViewController: destVC)
+        destVC.delegate = self // followerListVC is listening to userInfoVC. 
         
+        let navController = UINavigationController(rootViewController: destVC)
         present(navController, animated: true)
     }
 }
@@ -194,13 +188,11 @@ extension followerListVC: UICollectionViewDelegate{ // conform to delegate
 
 // when search result in search bar changes.
 extension followerListVC: UISearchResultsUpdating, UISearchBarDelegate{
-    
     func updateSearchResults(for searchController: UISearchController) {
         // make sure filter (text) is not empty
         guard let filter = searchController.searchBar.text, !filter.isEmpty else{ return}
         isSearching = true
         filteredFollowers = followers.filter{$0.login.lowercased().contains(filter.lowercased()) }
-        
         //update collection view data
         updateData(on: filteredFollowers)
     }
@@ -209,6 +201,23 @@ extension followerListVC: UISearchResultsUpdating, UISearchBarDelegate{
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         isSearching = false
         updateData(on: followers)
+    }
+}
+
+extension followerListVC: followerListVCDeligate{
+    func didRequestFollowers(for username: String) {
+        //1. reset everything
+        self.username = username
+        title = username
+        pageCounter = 1
+        followers.removeAll() // empty out followers
+        filteredFollowers.removeAll()
+        updateData(on: followers)
+        //        collectionView.setContentOffset(.zero, animated: true) // scroll up to the top
+        
+        //2. make network call to get followers for that user, then reser the screen
+        getFollowers(username: username, page: pageCounter)
+        // rerun list of followers
     }
 }
 

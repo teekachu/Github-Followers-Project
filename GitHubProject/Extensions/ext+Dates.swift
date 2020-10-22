@@ -17,7 +17,7 @@ extension Date {
     
 }
 
-//2. convert date to original string so xcode knows what it means. 
+//2. convert date to original string so xcode knows what it means.
 extension String{
     func convertToDate() -> Date?{
         let dateFormatter = DateFormatter()

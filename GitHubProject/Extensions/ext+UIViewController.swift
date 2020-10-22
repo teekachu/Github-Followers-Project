@@ -7,6 +7,7 @@
 
 //import Foundation
 import UIKit   // (includes foundation)
+import SafariServices
 
 fileprivate var containerView: UIView! // file private restricts access to only entity within the same file. ie, accessing this from UIViewController
 
@@ -66,6 +67,12 @@ extension UIViewController{
         view.addSubview(emptyStateview)
     }
     
+    
+    func presentSafariVC(with url: URL){
+        let safariVC = SFSafariViewController(url: url)
+        safariVC.preferredControlTintColor = .systemGreen
+        present(safariVC, animated: true)
+    }
     
 }
 

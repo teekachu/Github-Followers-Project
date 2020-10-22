@@ -15,6 +15,7 @@ enum GFError: String, Error {
     case invalidResponseFromServer = "Invalid response from server, please try again"
     case invalidDataReceived = "Data received from server was invalid, please try again."
     case errorJSONParsing = "JSON Parcing was unsuccessful, please try again."
+    case urlInvalid = "The url attached to this user is invalid"
 }
 
 
