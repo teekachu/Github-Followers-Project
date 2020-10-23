@@ -18,7 +18,7 @@ protocol GithubFollowersTappable: class{
 }
 
 class UserInfoVC: UIViewController {
-    weak var delegate: followerListVCDeligate!
+    weak var delegate: FollowerListVCDeligate!
     
     var username: String!
     let headerView = UIView()
@@ -123,7 +123,7 @@ class UserInfoVC: UIViewController {
 extension UserInfoVC: GithubProfileTappable{ // conform to deligate , with commands to pass
     func didTapGithubProfile(for user: user) {
         // Show safari VC
-        print("Github Profile button tapped, Show safari VC")
+        //        print("Github Profile button tapped, Show safari VC")
         guard let url = URL(string: user.html_url) else{
             presentGFalertOnMainThread(title: "Invalid URL", message: GFError.urlInvalid.rawValue, buttonTitle: "Okay")
             return
@@ -143,7 +143,7 @@ extension UserInfoVC: GithubFollowersTappable{
         delegate.didRequestFollowers(for: user.login)
         //3. dismiss this VC
         dismissVC()
-//        print("Followers button tapped, Refresh for new users")
+        //        print("Followers button tapped, Refresh for new users")
     }
 }
 

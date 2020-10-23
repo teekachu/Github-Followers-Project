@@ -1,5 +1,5 @@
 //
-//  followerListVC.swift
+//  FollowerListVC.swift
 //  GitHubProject
 //
 //  Created by Tee Becker on 10/15/20.
@@ -7,11 +7,11 @@
 
 import UIKit
 
-protocol followerListVCDeligate: class{
+protocol FollowerListVCDeligate: class{
     func didRequestFollowers(for username: String)
 }
 
-class followerListVC: UIViewController {
+class FollowerListVC: UIViewController {
     var username: String!
     var collectionView : UICollectionView!
     var followers: [Follower] = []
@@ -50,6 +50,8 @@ class followerListVC: UIViewController {
         //        navigationController?.isNavigationBarHidden = false
         navigationController?.setNavigationBarHidden(false, animated: true)
         navigationController?.navigationBar.prefersLargeTitles = true
+        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
+        navigationItem.rightBarButtonItem = addButton
     }
     
     
@@ -121,8 +123,35 @@ class followerListVC: UIViewController {
         //        }
     }
     
+    @objc func addButtonTapped(){
+        // make network Call
+        showLoadingView()
+        NetworkManager.shared.getUserInfo(for: username) {[weak self] (result) in
+            guard let self = self else{return}
+            self.dismissLoadingVIew()
+            
+            switch result{
+            case .success(let user):
+                let favorite = Follower(login: user.login, avatar_url: user.avatar_url)
+                PersistanceManager.updateWith(favorite: favorite, actionType: .add) {[weak self] (error) in
+                    guard let self = self else {return}
+                    guard let error = error else{
+                        // no error
+                        self.presentGFalertOnMainThread(title: "Success!", message: "You are my favorite! 😃✌🏼", buttonTitle: "Yay")
+                        return
+                    }
+                    // if there is an error
+                    self.presentGFalertOnMainThread(title: "Something went wrong.", message: error.rawValue, buttonTitle: "NOOO!!!")
+                }
+                
+            case .failure(let error):
+                self.presentGFalertOnMainThread(title: "Something went wrong.", message: error.rawValue, buttonTitle: "Uh Oh...")
+            }
+        }
+    }
     
-    // MARK: diffable continued:
+    
+    // MARK: Diffable continued:
     func configureDataSource(){
         dataSource = UICollectionViewDiffableDataSource<Section, Follower>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, follower) -> UICollectionViewCell? in
             
@@ -147,7 +176,8 @@ class followerListVC: UIViewController {
 }
 
 
-extension followerListVC: UICollectionViewDelegate{ // conform to delegate
+// MARK: Extensions
+extension FollowerListVC: UICollectionViewDelegate{ // conform to delegate
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         let offsetY = scrollView.contentOffset.y   // how far youve scrolled down
@@ -187,7 +217,7 @@ extension followerListVC: UICollectionViewDelegate{ // conform to delegate
 
 
 // when search result in search bar changes.
-extension followerListVC: UISearchResultsUpdating, UISearchBarDelegate{
+extension FollowerListVC: UISearchResultsUpdating, UISearchBarDelegate{
     func updateSearchResults(for searchController: UISearchController) {
         // make sure filter (text) is not empty
         guard let filter = searchController.searchBar.text, !filter.isEmpty else{ return}
@@ -204,7 +234,7 @@ extension followerListVC: UISearchResultsUpdating, UISearchBarDelegate{
     }
 }
 
-extension followerListVC: followerListVCDeligate{
+extension FollowerListVC: FollowerListVCDeligate{
     func didRequestFollowers(for username: String) {
         //1. reset everything
         self.username = username

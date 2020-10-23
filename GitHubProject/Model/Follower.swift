@@ -15,3 +15,5 @@ struct Follower: Codable, Hashable {  // Need to conform to Hashable for the dif
     var avatar_url: String
     
 }
+
+
