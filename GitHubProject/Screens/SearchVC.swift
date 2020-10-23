@@ -1,5 +1,5 @@
 //
-//  searchVC.swift
+//  SearchVC.swift
 //  GitHubProject
 //
 //  Created by Tee Becker on 10/14/20.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class searchVC: UIViewController {
+class SearchVC: UIViewController {
     
     let logoimageView = UIImageView()
     let usernameTextField = GFTextfield()
@@ -60,7 +60,7 @@ class searchVC: UIViewController {
             
         }
         
-        let fvc = followerListVC()
+        let fvc = FollowerListVC()
         fvc.username = usernameTextField.text
         fvc.title = usernameTextField.text
         //        fvc.navigationController?.isNavigationBarHidden = false
@@ -115,10 +115,12 @@ class searchVC: UIViewController {
 
 
 // MARK: Good practice to add as extension
-extension searchVC: UITextFieldDelegate {
+extension SearchVC: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         // print("didTapreturn")
         pushToFollowersListVC()
         return true
     }
 }
+
+

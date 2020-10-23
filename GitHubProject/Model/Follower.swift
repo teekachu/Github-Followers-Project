@@ -9,9 +9,11 @@ import Foundation
 // RULE OF THUMB: if we dont need inheritance for something, use a struct.
 // More performant and lighter
 
-struct Follower: Codable {
-    
+struct Follower: Codable, Hashable {  // Need to conform to Hashable for the diffibleDataSource. 
+   
     var login: String // not an optional because both fields are mandatory ( default provided by github if doesn't have their own avatar)
     var avatar_url: String
     
 }
+
+

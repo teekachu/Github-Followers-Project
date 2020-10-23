@@ -5,14 +5,15 @@
 //  Created by Tee Becker on 10/16/20.
 //
 
-import Foundation
+import UIKit
 
 // singleton
 class NetworkManager{
     
     // static means shared with other instances/values/ ie. every other network manager
     static let shared = NetworkManager()
-    let baseURL = "https://api.github.com"
+    private let baseURL = "https://api.github.com"
+    let cache = NSCache<NSString, UIImage>() // put it here because since NM is a singleton, there will only be one cache.
     
     private init(){
         
@@ -81,6 +82,51 @@ class NetworkManager{
     }
     
     
+    func getUserInfo(for username: String, completion: @escaping (Result<user, GFError>) -> Void){
+        
+        // need user URL, pulled from API doc
+        let endpoint = baseURL + "/users/\(username)"
+        
+        // make sure url string can be translated into valid URL
+        guard let url = URL(string: endpoint) else{
+            // error handling for the url
+            //            completion(nil, .invalidUsername)
+            completion(.failure(.invalidUsername))
+            return
+        }
+        
+        // if url was successful , continue
+        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+            // network call
+            if let _ = error{
+                completion(.failure(.badInternetConnection))
+                return
+            }
+            
+            // if response is not nil, put it in response as HTTPresponse, ALSO, check status code to see if its 200(OK).
+            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else{
+                completion(.failure(.invalidResponseFromServer))
+                return
+            }
+            
+            guard let data = data else{
+                completion(.failure(.invalidDataReceived))
+                return
+            }
+            
+            // parse JSON
+            
+            do{
+                let decoder = JSONDecoder()
+                let eachUser = try decoder.decode(user.self, from: data)
+                completion(.success(eachUser))
+            } catch{
+                completion(.failure(.errorJSONParsing))
+            }
+            
+        }
+        task.resume()
+    }
     
     
     

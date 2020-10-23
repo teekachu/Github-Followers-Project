@@ -13,15 +13,14 @@ class GFButton: UIButton {
     override init(frame: CGRect) {
         super.init(frame: frame) // making sure all the apple builts still exist
         // custom code
-        
         configure()
-        
     }
+    
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-        
     }
+    
     
     init (backgroundColor: UIColor, title: String) {
         super.init(frame: .zero)
@@ -37,6 +36,12 @@ class GFButton: UIButton {
 //        titleLabel?.textColor = .white
         titleLabel?.font = UIFont.preferredFont(forTextStyle: .headline)
         translatesAutoresizingMaskIntoConstraints = false
+    }
+    
+    
+    func set(backgroundColor: UIColor, title: String){
+        self.backgroundColor = backgroundColor
+        setTitle(title, for: .normal)
     }
     
 }
