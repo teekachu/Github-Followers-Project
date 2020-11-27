@@ -11,3 +11,5 @@ This app allows the user to search for any Github member based on their profile 
   - Number of other members they are following. 
 
 The user could also add a member as favorites, and get quick access to their profile. 
+
+This app also implemented UI in code, which utilized layout constraints, custom alert controller, as well as contains dynamic UI which adapt to dark mode and different phone sizes. 
