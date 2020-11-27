@@ -12,6 +12,8 @@ class SearchVC: UIViewController {
     let logoimageView = UIImageView()
     let usernameTextField = GFTextfield()
     let callToActionButton = GFButton(backgroundColor: .systemGreen, title: "Get Followers")
+    // for the keyboard covering up the search textfield.
+    var logoimageViewTopConstraint = NSLayoutConstraint()
     
     // computed property
     var isUserNameEntered: Bool {
@@ -19,7 +21,9 @@ class SearchVC: UIViewController {
     }
     
     // logo names to avoid stringly typed - which is dangerous
-    let ghlogo = "gh-logo"
+    enum Image{
+        static let ghlogo = UIImage(named: "gh-logo")
+    }
     
     
     override func viewDidLoad() {
@@ -38,12 +42,13 @@ class SearchVC: UIViewController {
         super.viewWillAppear(animated)
         navigationController?.isNavigationBarHidden = true
         usernameTextField.delegate = self
+        usernameTextField.text = ""
     }
     
     
     // functions
     func createDismissKeyBoardGesture(){
-        let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing)) // basically resign first responder status
+        let tap = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing)) // basically resign first responder status
         view.addGestureRecognizer(tap)
         
     }
@@ -55,14 +60,14 @@ class SearchVC: UIViewController {
             
             // TODO: alert here
             // cmd + ctrl + space bar -> emoji menu
-            presentGFalertOnMainThread(title: "Empty Username", message: "Please enter a username, we need to know who to look for 🤗", buttonTitle: "Sure thing")
+            presentGFalertOnMainThread(title: "Empty Username", message: GFError.emptyUserName.rawValue , buttonTitle: "Sure thing")
             return
-            
         }
         
-        let fvc = FollowerListVC()
-        fvc.username = usernameTextField.text
-        fvc.title = usernameTextField.text
+        view.endEditing(true)  // or  usernameTextField.resignFirstResponder() to hide keyboard in previous vc once we move to next VC
+        let fvc = FollowerListVC(for: usernameTextField.text!)
+//        fvc.username = usernameTextField.text
+//        fvc.title = usernameTextField.text
         //        fvc.navigationController?.isNavigationBarHidden = false
         navigationController?.pushViewController(fvc, animated: true)
         
@@ -73,11 +78,16 @@ class SearchVC: UIViewController {
     func configureLogoImageView(){
         view.addSubview(logoimageView)
         logoimageView.translatesAutoresizingMaskIntoConstraints = false
-        logoimageView.image = UIImage(named: ghlogo)
+        logoimageView.image = Image.ghlogo
+        
+        // using the enum
+        let topConstraintConstant: CGFloat = DeviceTypes.isiPhoneSE || DeviceTypes.isiPhone8Zoomed ? 20 : 80
+        logoimageViewTopConstraint = logoimageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: topConstraintConstant)
+        logoimageViewTopConstraint.isActive = true
         
         NSLayoutConstraint.activate([
             // normally want 4 constraints per object, normally height,width, x + y cords
-            logoimageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 80),
+//            logoimageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 80),
             logoimageView.centerXAnchor.constraint(equalTo: view.centerXAnchor), // in the middle of Y
             logoimageView.heightAnchor.constraint(equalToConstant: 200),
             logoimageView.widthAnchor.constraint(equalToConstant: 200)

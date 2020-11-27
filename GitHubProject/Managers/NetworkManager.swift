@@ -118,6 +118,7 @@ class NetworkManager{
             
             do{
                 let decoder = JSONDecoder()
+                decoder.dateDecodingStrategy = .iso8601 // to get rid of func in Date exr.
                 let eachUser = try decoder.decode(user.self, from: data)
                 completion(.success(eachUser))
             } catch{
@@ -125,6 +126,7 @@ class NetworkManager{
             }
             
         }
+        
         task.resume()
     }
     

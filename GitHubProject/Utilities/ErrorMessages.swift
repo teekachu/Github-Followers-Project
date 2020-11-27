@@ -18,6 +18,7 @@ enum GFError: String, Error {
     case urlInvalid = "The url attached to this user is invalid"
     case unableToFavorite = "There was an error when favoriting this user, please try again."
     case alreadyInFavorites = "This user has already been favorited. You guys must be great friends!"
+    case emptyUserName = "Please enter a username, we need to know who to look for 🤗"
 }
 
 

@@ -12,6 +12,7 @@ enum itemInfoType{
 }
 
 class GFItemInfoView: UIView {
+    
     let symbolImageview = UIImageView()
     let titleLabel = GFTitleLabel(textAlignment: .left, fontSize: 14)
     let countLabel = GFTitleLabel(textAlignment: .center, fontSize: 14)
@@ -29,6 +30,7 @@ class GFItemInfoView: UIView {
     
     
     private func configure(){
+        
         addSubview(symbolImageview)
         addSubview(titleLabel)
         addSubview(countLabel)
@@ -40,6 +42,7 @@ class GFItemInfoView: UIView {
     
     
     private func layoutUI(){
+        
         NSLayoutConstraint.activate([
             symbolImageview.topAnchor.constraint(equalTo: self.topAnchor),
             symbolImageview.leadingAnchor.constraint(equalTo: self.leadingAnchor),
@@ -62,15 +65,19 @@ class GFItemInfoView: UIView {
     func set(ItemInfoType: itemInfoType, with count: Int){
         
         switch ItemInfoType{
+        
         case .repos:
             symbolImageview.image = UIImage(systemName: SFSymbols.repos)
             titleLabel.text = "Public Repos"
+            
         case .gists:
             symbolImageview.image = UIImage(systemName: SFSymbols.gists)
             titleLabel.text = "Public Gists"
+            
         case .following:
             symbolImageview.image = UIImage(systemName: SFSymbols.following)
             titleLabel.text = "Following"
+            
         case .followers:
             symbolImageview.image = UIImage(systemName: SFSymbols.follwers)
             titleLabel.text = "Followers"

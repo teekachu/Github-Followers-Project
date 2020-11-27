@@ -19,5 +19,5 @@ struct user: Codable {
     let html_url: String
     let following: Int
     let followers: Int
-    var created_at: String
+    var created_at: Date // used to be a String but using decoder.dateDecodingStrategy = .iso8601
 }

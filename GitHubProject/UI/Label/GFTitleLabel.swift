@@ -23,17 +23,17 @@ class GFTitleLabel: UILabel {
     
     
     // create custome init
-    init(textAlignment: NSTextAlignment, fontSize: CGFloat) {
-        super.init(frame: .zero) // what does this do/
+    convenience init(textAlignment: NSTextAlignment, fontSize: CGFloat) {
+        self.init(frame: .zero) // what does this do/
         
         self.textAlignment = textAlignment
         self.font = UIFont.systemFont(ofSize: fontSize, weight: .bold)
-        configure()
     }
     
     
     // configure func
     private func configure(){
+        
         translatesAutoresizingMaskIntoConstraints = false
         textColor = .label // black on light and white on dark
         adjustsFontSizeToFitWidth = true

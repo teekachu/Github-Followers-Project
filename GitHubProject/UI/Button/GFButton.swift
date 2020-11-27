@@ -22,15 +22,15 @@ class GFButton: UIButton {
     }
     
     
-    init (backgroundColor: UIColor, title: String) {
-        super.init(frame: .zero)
+    convenience init (backgroundColor: UIColor, title: String) {
+        self.init(frame: .zero)
         self.backgroundColor = backgroundColor
         self.setTitle(title, for: .normal)
-        configure() // don't miss this one
     }
     
     //private means ONLY can be called in this call. NOT ALLOWED: GFButton.configure
     private func configure() {
+        
         layer.cornerRadius = 10
         setTitleColor(.white, for: .normal)
 //        titleLabel?.textColor = .white

@@ -15,6 +15,7 @@ class FavoriteCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
         addSubview()
         configure()
     }
@@ -26,18 +27,21 @@ class FavoriteCell: UITableViewCell {
     
     
     private func addSubview(){
+        
         addSubview(avatarImageView)
         addSubview(usernameLabel)
     }
     
     
     func set(favorites: Follower){
+        
         usernameLabel.text = favorites.login
         avatarImageView.downloadImage(from: favorites.avatar_url)
     }
     
     
     private func configure(){
+        
         accessoryType = .disclosureIndicator  // > thing on the right of table view
         let padding: CGFloat = 12
         let imageSize:CGFloat = 60

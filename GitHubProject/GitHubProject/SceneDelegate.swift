@@ -11,63 +11,20 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var window: UIWindow?
     
-    
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
         // configure scene
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(frame: windowScene.coordinateSpace.bounds) // fill up the screen
         window?.windowScene = windowScene
-        
-        //        exp: set the root VC to be the initial VC that came with project
-        //        window?.rootViewController = ViewController()
-        
-        //Tab bar -> nav bar -> rootVC
-        //        let tabBar = UITabBarController()
-        //        window?.rootViewController = tabBar()
-        window?.rootViewController = createTabBar()         // add icons to bottom of Tab bar
+        window?.rootViewController = GFTabBarController()         // add icons to bottom of Tab bar
         window?.makeKeyAndVisible()
-        
-        //one tab bar, two tabs, each tab will have its own NavController, which will have its own array of VC.
-        
-        // MARK: REFACTOR OUT THESE TWO when added tab bar icons
-        //        let searchNVC = UINavigationController(rootViewController: searchVC())
-        //        let favoritesListNVC = UINavigationController(rootViewController: favoriteListVC())
-        //        tabBar.viewControllers = [searchNVC, favoritesListNVC]
         
         configureNavigationBar()
     }
     
-    // MARK: creating viewcontrollers and tab bar( with symbol in tab bar )
-    
-    func createSearchNavController() -> UINavigationController{
-        
-        let searchViewController = SearchVC()
-        searchViewController.title = "Search"
-        searchViewController.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 0)
-        
-        return UINavigationController(rootViewController: searchViewController)
-    }
-    
-    func favoritesSearchNavController() -> UINavigationController{
-        
-        let favViewController = FavoriteListVC()
-        favViewController.title = "Favorites"
-        favViewController.tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 1)
-        
-        return UINavigationController(rootViewController: favViewController)
-    }
-    
-    func createTabBar() -> UITabBarController{
-        let tabBar = UITabBarController()
-        UITabBar.appearance().tintColor = .systemGreen
-        tabBar.viewControllers = [createSearchNavController(), favoritesSearchNavController()]
-        return tabBar
-    }
-    
     func configureNavigationBar(){
         UINavigationBar.appearance().tintColor = .systemGreen
-        // basically make the buttons all the way up top green and same as other colors.
     }
     
     

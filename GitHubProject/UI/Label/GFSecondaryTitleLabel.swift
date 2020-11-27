@@ -23,15 +23,15 @@ class GFSecondaryTitleLabel: UILabel {
     
     
     // create custome init
-    init(fontSize: CGFloat) {
-        super.init(frame: .zero) // what does this do/
+    convenience init(fontSize: CGFloat) {
+        self.init(frame: .zero) // what does this do/
         font = UIFont.systemFont(ofSize: fontSize, weight: .medium)
-        configure()
     }
     
     
     // configure func
     private func configure(){
+        
         translatesAutoresizingMaskIntoConstraints = false
         textColor = .secondaryLabel // black on light and white on dark
         adjustsFontSizeToFitWidth = true

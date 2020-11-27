@@ -20,6 +20,7 @@ class GFTextfield: UITextField {
     }
     
     private func configure(){
+        
         becomeFirstResponder()
         translatesAutoresizingMaskIntoConstraints = false
         layer.borderWidth = 2
@@ -35,6 +36,7 @@ class GFTextfield: UITextField {
         
         backgroundColor = .tertiarySystemBackground
         autocorrectionType = .no // because userNames could be weird and misspelled
+        clearButtonMode = .whileEditing // x button to clear the textfield
         
         placeholder = "Enter a username" //placeholder text
         
