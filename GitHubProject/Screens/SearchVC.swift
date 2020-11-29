@@ -11,7 +11,7 @@ class SearchVC: UIViewController {
     
     let logoimageView = UIImageView()
     let usernameTextField = GFTextfield()
-    let callToActionButton = GFButton(backgroundColor: .systemGreen, title: "Get Followers")
+    let callToActionButton = GFButton(backgroundColor: Colors.yellowfdb903, title: "Get Followers")
     // for the keyboard covering up the search textfield.
     var logoimageViewTopConstraint = NSLayoutConstraint()
     

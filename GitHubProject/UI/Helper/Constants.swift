@@ -45,3 +45,18 @@ enum DeviceTypes {
         return isiPhoneX || isiPhoneXsMaxAndXr
     }
 }
+
+
+struct Colors {
+    static var darkGrey304057: UIColor = #colorLiteral(red: 0.1882352941, green: 0.2509803922, blue: 0.3411764706, alpha: 1)
+    
+    static let peachyda5e5a: UIColor = #colorLiteral(red: 0.8549019608, green: 0.368627451, blue: 0.3529411765, alpha: 1)
+    
+    static let orangee2814d: UIColor = #colorLiteral(red: 0.8862745098, green: 0.5058823529, blue: 0.3019607843, alpha: 1)
+    
+    static let yellowfdb903: UIColor = #colorLiteral(red: 0.9921568627, green: 0.7254901961, blue: 0.01176470588, alpha: 1)
+    
+    static let mediumBlueColor: UIColor = #colorLiteral(red: 0.7215686275, green: 0.8470588235, blue: 0.8470588235, alpha: 1)
+    
+    static let mintBlueColor: UIColor = #colorLiteral(red: 0.9333333333, green: 0.9607843137, blue: 0.8588235294, alpha: 1)
+}
